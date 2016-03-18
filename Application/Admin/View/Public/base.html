@@ -61,14 +61,16 @@
                     <span>{$me['title']}</span>
                 </li>
                 <ol class="left-menu-sub display-none">
-                    <volist name="me[sub]" id="su">
-                        <li class="menu-sub-item lineHeight-45">
-                            <a href="{$su['url']}" class="colorF display-block">
-                                <i class="glyphicon glyphicon-menu-right font10"></i>
-                                <span>{$su['title']}</span>
-                            </a>
-                        </li>
-                    </volist>
+                    <if condition="me[sub] neq false">
+                        <volist name="me[sub]" id="su">
+                            <li class="menu-sub-item lineHeight-45">
+                                <a href="{$su['url']}" class="colorF display-block">
+                                    <i class="glyphicon glyphicon-menu-right font10"></i>
+                                    <span>{$su['title']}</span>
+                                </a>
+                            </li>
+                        </volist>
+                    </if>
                 </ol>
             </volist>
 		</ul>
