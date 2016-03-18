@@ -58,12 +58,12 @@
                     <span><?php echo ($me['title']); ?></span>
                 </li>
                 <ol class="left-menu-sub display-none">
-                    <?php if(is_array($me[sub])): $i = 0; $__LIST__ = $me[sub];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$su): $mod = ($i % 2 );++$i;?><li class="menu-sub-item lineHeight-45">
-                            <a href="<?php echo ($su['url']); ?>" class="colorF display-block">
-                                <i class="glyphicon glyphicon-menu-right font10"></i>
-                                <span><?php echo ($su['title']); ?></span>
-                            </a>
-                        </li><?php endforeach; endif; else: echo "" ;endif; ?>
+                    <?php if(me[sub] != false): if(is_array($me[sub])): $i = 0; $__LIST__ = $me[sub];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$su): $mod = ($i % 2 );++$i;?><li class="menu-sub-item lineHeight-45">
+                                <a href="<?php echo ($su['url']); ?>" class="colorF display-block">
+                                    <i class="glyphicon glyphicon-menu-right font10"></i>
+                                    <span><?php echo ($su['title']); ?></span>
+                                </a>
+                            </li><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                 </ol><?php endforeach; endif; else: echo "" ;endif; ?>
 		</ul>
 	</div>
