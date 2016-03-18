@@ -1,0 +1,66 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">募集活动列表</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Raise/add')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加模块
+			</a>
+			<a href="#" class="btn btn-danger" onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-top-10">
+		<form action="{:U('Raise/delete')}" method="get" id="deleterForm">
+		<div class="border-solid" style="padding:0">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>募集上限</th>
+						<th>募集次数</th>
+						<th>活动开始时间</th>
+						<th>活动结束时间</th>
+						<th>是否开启</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['raise_top']}</td>
+							<td>{$vo['raise_count']}</td>
+							<td>{$vo['start_time']}</td>
+							<td>{$vo['end_time']}</td>
+							<td>
+								<if condition="$vo['is_open'] eq 1">
+									是
+								<else/>
+									否
+								</if>
+							</td>
+							<td>
+								<a href="{:U('Raise/add',array('id'=>$vo['id']))}">
+									编辑
+								</a>|
+								<a href="{:U('Raise/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

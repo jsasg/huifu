@@ -1,0 +1,81 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">产品列表</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Finance/add')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加产品
+			</a>
+			<a href="#" class="btn btn-danger" onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<form action="{:U('Finance/delete')}" method="get" id="deleterForm">
+		<div class="border-solid margin-top-10">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>产品名称</th>
+						<th>投资期限</th>
+						<th>预期收入</th>
+						<th>起息时间 </th>
+						<th>到息时间 </th>
+						<th>资金到账时间段 </th>
+						<th>到期自动赎回 </th>
+						<th>
+                            <span>新增时间</span>
+                            <if condition="($_GET['sort_time'] eq 'up') || ($_GET['sort_time'] eq false)">
+                                <a href="{:U('Finance/index',array('sort_time'=>'down'))}">
+                            <else/>
+                                <a href="{:U('Finance/index',array('sort_time'=>'up'))}">
+                            </if>
+                                <i class='<if condition="$_GET['sort_time'] eq 'down'">glyphicon glyphicon-arrow-down<else/>glyphicon glyphicon-arrow-up</if> font12'></i>
+                            </a>
+                        </th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['goods_name']}</td>
+							<td>{$vo['invest_timelimit']}</td>
+							<td>{$vo['expect_income']}</td>
+							<td>{$vo['start_time']}</td>
+							<td>{$vo['end_time']}</td>
+							<td>{$vo['to_account_time']}</td>
+							<td>
+								<if condition="$vo['is_return'] eq 1">
+									是
+								<else/>
+									否
+								</if>
+							</td>
+							<td>{$vo['create_time']}</td>
+							<td>
+								<a href="{:U('Finance/add',array('id'=>$vo['id']))}">
+									编辑
+								</a>|
+								<a href="{:U('Finance/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

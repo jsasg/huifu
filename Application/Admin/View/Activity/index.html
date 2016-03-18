@@ -1,0 +1,82 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">活动列表</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Activity/add')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加活动
+			</a>
+			<a href="#" class="btn btn-danger" onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<form action="{:U('activity/delete')}" method="get" id="deleterForm">
+		<div class="border-solid margin-top-10">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>活动标题</th>
+						<th>活动人数</th>
+						<th>报名截止时间</th>
+						<th>活动开始时间 </th>
+						<th>活动结束时间 </th>
+						<th>是否开启 </th>
+						<th>
+                            <span>新增时间</span>
+                            <if condition="($_GET['sort_time'] eq 'up') || ($_GET['sort_time'] eq false)">
+                                <a href="{:U('Activity/index',array('sort_time'=>'down'))}">
+                            <else/>
+                                <a href="{:U('Activity/index',array('sort_time'=>'up'))}">
+                            </if>
+                                <i class='<if condition="$_GET['sort_time'] eq 'down'">glyphicon glyphicon-arrow-down<else/>glyphicon glyphicon-arrow-up</if> font12'></i>
+                            </a>
+                        </th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['activity_name']}</td>
+							<td>{$vo['sign_up_num']}</td>
+							<td>{$vo['sign_up_end']|default=''|date='Y-m-d',###}</td>
+							<td>{$vo['start_time']|default=''|date="Y-m-d",###}</td>
+							<td>{$vo['end_time']|default=''|date="Y-m-d",###}</td>
+							<td>
+								<if condition="$vo['is_open'] eq 1">
+									是
+								<else/>
+									否
+								</if>
+							</td>
+							<td>{$vo['create_time']}</td>
+							<td>
+								<a href="{:U('activity/apply',array('id'=>$vo['id']))}">
+									查看报名列表
+								</a>|
+								<a href="{:U('activity/add',array('id'=>$vo['id']))}">
+									编辑
+								</a>|
+								<a href="{:U('activity/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

@@ -1,0 +1,25 @@
+<div class="flexslider">
+    <ul class="slides">
+        <volist name="pic" id="vo">
+            <li style="display:none;">
+                <a href="{$vo['url']}"><img src="{$vo['picture']}" alt="{$vo.title}"/></a>
+            </li>
+        </volist>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.flexslider').flexslider({
+            animation: "slide",
+            slideDirection: "horizontal",
+            slideshowSpeed: 3000
+        });
+    });
+</script>
+<div class="mui-slider">
+ 	 <div class="mui-slider-group">
+    		<volist name="advert" id="ad">
+    			<div class="mui-slider-item"><a href="{$ad['advert_url']}"><img src="__UPIMG__/{$ad['advert_picture']}" /></a></div>
+    		</volist>
+  	</div>
+</div>

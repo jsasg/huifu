@@ -1,0 +1,65 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">角色管理</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Role/insert')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加角色
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<form action="{:U('Role/delete')}" method="get" id="deleterForm">
+		<div class="margin-top-10">
+            <div class="cate-title">
+                &emsp;&emsp;<span class="cate_icon root"></span>
+                <span>顶级角色</span>
+            </div>
+            <volist name="list" id="vo">
+                <div class="cate-item p-node">
+                    <div class="cate-text">
+                        <span class='cate_icon <if condition="$vo[sub] eq false">no_sub<else/>sub</if>'></span>
+                        <span>{$vo['role_name']}</span>
+                    </div>
+                    <div class="cate-action text-right">
+                        <a href="{:U('Role/auth',array('id'=>$su['id']))}">
+                            编辑权限
+                        </a>|
+                        <a href="{:U('Role/insert',array('id'=>$vo['id']))}">
+                            编辑
+                        </a>|
+                        <a href="{:U('Role/delete',array('id'=>$vo['id']))}">
+                            删除
+                        </a>
+                    </div>
+                </div>
+                <volist name="vo[sub]" id="su">
+                    <div class="su display-none">
+                        <div class="cate-item">
+                            <div class="cate-text">
+                                &emsp;&emsp;<span class="cate_icon no_sub"></span>
+                                <span>{$su['role_name']}</span>
+                            </div>
+                            <div class="cate-action text-right">
+                                <a href="{:U('Role/auth',array('id'=>$su['id']))}">
+                                    编辑权限
+                                </a>|
+                                <a href="{:U('Role/insert',array('id'=>$su['id']))}">
+                                    编辑
+                                </a>|
+                                <a href="{:U('Role/delete',array('id'=>$su['id']))}">
+                                    删除
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </volist>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

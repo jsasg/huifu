@@ -1,0 +1,36 @@
+<include file="Public:head"/>
+<div class="content-box">
+	<ul class="list-tab">
+		<volist name="list" id="vo">
+			<li class="list-tab-item">
+				<a href="{:U('Product/detail',array('id'=>$vo['id']))}" class="">
+					<span>{$vo['goods_name']}</span><if condition="$vo['is_novice'] eq 1"><span class="badge">新手专享</span></if>
+					<div class="product-box">
+						<div class="product-list-item">
+							<span class="color-red font16">{$vo['issuing_scale']|default=0}</span>
+						</div>
+						<div class="product-list-item text-center">
+							<span class="color-gray-4 font13">{$vo['invest_timelimit']}</span>
+						</div>
+						<div class="product-list-item text-right">
+							<span class="color-gray-4 font13">{$vo['count']}人</span>
+						</div>		
+					</div>
+					<div class="product-tag-box">
+						<div class="product-list-item">
+							<span class="color-gray-8 font13">发行规模</span>
+						</div>
+						<div class="product-list-item text-center">
+							<span class="color-gray-8 font13">投资期限</span>
+						</div>
+						<div class="product-list-item text-right">
+							<span class="color-gray-8 font13">已申购</span>
+						</div>		
+					</div>		
+				</a>
+			</li>
+		</volist>
+	</ul>
+</div>
+<include file="Public:nav"/>
+<include file="Public:boot"/>

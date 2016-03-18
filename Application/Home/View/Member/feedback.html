@@ -1,0 +1,46 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="register-box bg-white">
+		<p class="margin-top-10">
+			<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+			<span class="font16">意见返馈</span>
+		</p>
+		<form action="" method="post" id="form">
+			<input type="hidden" name="user_id" value="{$_GET['user_id']}">
+			<div class="padding10">
+      				<textarea name="feed_content"  class="form-control" rows="5" placeholder="内容......"></textarea>
+			</div>
+			<div class="padding10">
+      				<input type="text" name="contact" class="register-input"  placeholder="联系方式">
+			</div>
+			<div class="padding10">
+				<button type="button" id="submit" class="btn btn-primary btn-block">提&emsp;交 </button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" >
+ 	$(document).ready(function(){
+ 		$("#submit").click(function(){
+ 			var content = $('#form').serialize();
+ 			$.ajax({
+				url:"{:U('Member/feedback')}", 	
+				dataType:'JSON',
+				data:content,
+				type:'POST',
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+						window.location="{:U('Member/index')}";
+					}else{
+						alert(data.message);
+					}				
+				}	
+ 			})
+ 		})
+	 })
+</script>
+<include file="Public:boot"/>

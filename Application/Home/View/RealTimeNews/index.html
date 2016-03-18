@@ -1,0 +1,33 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="raise-box padding10" id="result">
+	<volist name="list" id="vo">
+		<div class="raise-content bg-white margin-bottom-10">
+			<p class="margin-top-10">
+				<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+				<span class="font16">{$vo['title']}</span>
+				<span  class="font13">（{$vo['create_time']}）</span>
+			</p>
+			<div class="invite-padding">
+				<p>
+					<span>{$vo['content']}</span>
+				</p>
+			</div>
+		</div>
+	</volist>
+</div>
+<div class="foot-margin"></div>
+<script type="text/javascript" >
+if(typeof(EventSource)!=="undefined"){
+ 	 var source=new EventSource("{:U('RealTimeNews/realTimeSend',array('user_id'=>$_GET['user_id']))}");
+	source.onmessage=function(event){
+ 		 $('#result').prepend(event.data);
+  	};
+}else{
+  	alert('您的浏览器不支持实时消息功能!');
+}
+</script>
+<include file="Public:nav"/>
+<include file="Public:boot"/>

@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>帮TA募集</title>
+	<style type="text/css">
+		*{padding:0;margin:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+		body{background:url('__PUBLIC__/Home/image/raisebg.png') no-repeat;background-size:100%;overflow:hidden;}
+		#title{width:100%;height:43px;}
+		#title .top-time{font-size:13px;color:#B1002D;line-height:40px;}
+		#title .nav-item{width:50%;height:43px;float:left;}
+		#title .raise-btn{width:100px;height:43px;display:block;line-height:42px;font-size:13px;text-align: center;text-decoration:none;color:#FFF;float:right;}
+		#title .btn-bg{background:url('__PUBLIC__/Home/image/raisedetail.png') no-repeat;background-size:100%;}
+		#custom{width:100%;height:167px;text-align:center;}
+		#custom img{width:160px;height:167px;}
+		#button{width:100%;height:35px;text-align: center;}
+		#button img{width:100px;height:35px;}
+		#content{width:100%;height:200px;padding:20px;}
+		#content #money{width:100%;padding:5px 0;font-size:13px;color:red;text-align:center;}
+		#content .content{width:100%;height:140px;background-color:#FFF;border-radius:5px;text-align:center;padding:0 10px;}
+		#content .content .table-title{width:100%;auto;padding:5px 0;font-size:13px;color:red;border-bottom:1px solid red}
+		#content .content .table-ul{width:100%;padding:5px 0;list-style:none;float:left}
+		#content .content .table-ul li{width:33.3%;float:left;font-size:13px;color:#666}
+		#content .content .table{width:100%;height:80px;overflow:hidden;}
+		#content .content .table table,#content .content .table tr{width:100%;height:auto;font-size:13px;color:#666;}
+		#send{width:100%;height:100%;display:none;}
+		#send #send-bg{width:100%;height:100%;position:fixed;top:0;background-color:#000;opacity:0.6}
+		#send .send-content{width:100%;height:auto;position:fixed;top:100px;}
+		#send .send-input{width:80%;height:140px;background-color:#FBE6A7;border-radius:3px;border:1px solid #8E7027;margin:0 auto;position:relative;}
+		#send .title{padding:10px 0;color:#8E7027;text-align:center;}
+		#send .send-input #close{width:16px;height:16px;position:absolute;top:5px;right:5px;background:url('__PUBLIC__/Home/image/close.png') no-repeat;background-size:100%}
+		#send .input{width:100%;padding:5px 10px;text-align:center;}
+		#send .input input{width:100%;height:35px;border-radius:3px;border:1px solid #8E7027;}
+		#send .input button{width:100px;height:35px;background-color:#1D8DDF;border:0;border-radius:2px;color:#FFF;margin-top:10px;}
+		#share-box{width:100%;height:100%;position:absolute;top:0;z-index:3;background-color:#000;opacity:0.8;display:none}
+		#share-box img{width:100%;height:100%}
+	</style>
+	<script src="__COMMON__/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+	<script src="__PUBLIC__/Home/js/fsrPMD.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="title">
+		<div class="nav-item top-time">&emsp;活动时间&nbsp;{$raise['start_time']|date='m/d',###}-{$raise['end_time']|date='m/d',###}</div>
+		<div class="nav-item">
+			<a href="{:U('Raise/desc',array('id'=>$raise['id']))}" class="raise-btn btn-bg">活动规则</a>
+		</div>
+	</div>
+	<div id="custom">
+		<img src="__UPIMG__/{$raise['raise_picture']}" alt="">
+	</div>
+	<div id="button">
+		<a href="javascript:void(0)"  id="raise">
+			<img src="__PUBLIC__/Home/image/raise.png" alt="">
+		</a>
+	</div>
+	<div id="button">
+		<if condition="$_SESSION['mid'] neq false">
+			<a href="javascript:void(0)" id="share" >
+		<else/>
+			<a href="{:U('Member/register')}" >
+		</if>
+			<img src="__PUBLIC__/Home/image/insert.png" alt="">
+		</a>
+	</div>
+	<div id="content">
+		<div id="money">已募集了：{$desc['money']|default=0}</div>
+		<div class="content">
+			<div class="table-title">帮TA募集的好友</div>
+			<ul class="table-ul">
+				<li>昵称</li>
+				<li>时间</li>
+				<li>募集资金</li>
+			</ul>
+			<div class="table" id="table">
+				<table >
+					<tbody>
+						<volist name="desc['data']" id="vo">
+							<tr>
+								<td>{$vo['mobile']}</td>
+								<td>{$vo['create_time']|date="m-d H:i:s",###}</td>
+								<td>{$vo['money']}</td>
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id="send">
+		<div id="send-bg"></div>
+		<div class="send-content">
+			<form action="" method="">
+				<div class="send-input">
+					<p class="title">
+						<span class="bg-red">&nbsp;</span>
+						<span class="font16">输入手机号帮TA募集</span>
+						<div id="close"></div>
+					</p>
+					<div class="input">
+						<input name="mobile" value="" placeholder="手机号"/>
+						<button type="button" class="btn" id="raise-btn">募&emsp;集</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="share-box">
+		<img src="__PUBLIC__/Home/image/raisetips.png" alt="">
+	</div>
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+  wx.config({
+    	debug: false,
+    	appId: "{$signature['appId']}",
+    	timestamp: "{$signature['timestamp']}",
+    	nonceStr: "{$signature['nonceStr']}",
+    	signature: "{$signature['signature']}",
+    	jsApiList: [
+      		// 所有要调用的 API 都要加到这个列表中
+      		'onMenuShareTimeline',
+		'onMenuShareAppMessage',
+		'onMenuShareQQ',
+		'onMenuShareWeibo',
+		'onMenuShareQZone',
+		'showAllNonBaseMenuItem',
+		'showOptionMenu',
+		'showMenuItems',
+   	 ]
+  });
+  wx.ready(function () {
+    	// 在这里调用 API
+    	wx.showAllNonBaseMenuItem();
+    	wx.showMenuItems({
+    		menuList: [
+    			'menuItem:profile',
+    			'menuItem:addContact',
+    		] // 要显示的菜单项，所有menu项见附录3
+	});
+    	wx.onMenuShareTimeline({
+    		title: "{$signature['title']}", // 分享标题
+    		link: "{$signature['link']}", // 分享链接
+    		imgUrl: "{$signature['img']}", // 分享图标
+    		success: function () { 
+        			// 用户确认分享后执行的回调函数
+    		},
+    		cancel: function () { 
+        			// 用户取消分享后执行的回调函数
+    		}
+	});
+	wx.onMenuShareAppMessage({
+    		title: "{$signature['title']}", // 分享标题
+    		desc: "{$signature['desc']}", // 分享描述
+    		link: "{$signature['link']}", // 分享链接
+   	 	imgUrl: "{$signature['img']}", // 分享图标
+    		type: '', // 分享类型,music、video或link，不填默认为link
+    		dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    		success: function () { 
+        			// 用户确认分享后执行的回调函数
+    		},
+    		cancel: function () { 
+        			// 用户取消分享后执行的回调函数
+    		}
+	});
+	wx.onMenuShareQQ({
+    		title: "{$signature['title']}", // 分享标题
+    		desc: "{$signature['desc']}", // 分享描述
+    		link: "{$signature['link']}", // 分享链接
+    		imgUrl: "{$signature['img']}", // 分享图标
+    		success: function () { 
+       			// 用户确认分享后执行的回调函数
+    		},
+    		cancel: function () { 
+       			// 用户取消分享后执行的回调函数
+    		}
+	});
+	wx.onMenuShareWeibo({
+    		title: "{$signature['title']}", // 分享标题
+    		desc: "{$signature['desc']}", // 分享描述
+    		link: "{$signature['link']}", // 分享链接
+    		imgUrl: "{$signature['img']}", // 分享图标
+    		success: function () { 
+       			// 用户确认分享后执行的回调函数
+    		},
+    		cancel: function () { 
+        			// 用户取消分享后执行的回调函数
+    		}
+	});
+	wx.onMenuShareQZone({
+    		title: "{$signature['title']}", // 分享标题
+    		desc: "{$signature['desc']}", // 分享描述
+    		link: "{$signature['link']}", // 分享链接
+    		imgUrl: "{$signature['img']}", // 分享图标
+    		success: function () { 
+      			 // 用户确认分享后执行的回调函数
+    		},
+    		cancel: function () { 
+        			// 用户取消分享后执行的回调函数
+    		}
+	});
+  });
+</script>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$('#raise').click(function(){
+			$('#send').show();
+		})
+		$('#close').click(function(){
+			$('#send').hide();
+		})
+		
+		$('#share').click(function(){
+			$('#share-box').show();
+		})
+		$('#share-box').click(function(){
+			$(this).hide();
+		})
+		
+		$('#raise-btn').click(function(){
+			var query = {'mobile':$('[name="mobile"]').val()};
+			$.ajax({
+				url:"{:U('Raise/raise',array('user_id'=>$_GET['user_id'],'mid'=>$_GET['mid']))}",
+				dataType:"JSON",
+				data:query,
+				type:"POST",
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+					}else{
+						alert(data.message);
+					}
+				}
+			})
+		})
+		$("#table").fsrPMD({
+              	 	Event: 'mouseover',        //事件
+               		Id: 'table',              //容器ID
+              	 	Bq: 'table',               //复制html标签
+              	 	Fx: "down",             //方向
+              	 	Time: 15             //时间
+           	})
+	})
+</script>
+</html>

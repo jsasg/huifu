@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="register-box bg-white">
+		<p class="margin-top-10">
+			<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+			<span class="font16">会员登录</span>
+		</p>
+		<form action="" method="post" id="form">
+			<div class="padding10">
+				<span for="login_name" class="">用户名:</span>
+      				<input type="text" name="login_name" class="register-input" placeholder="用户名">
+			</div>
+			<div class="padding10">
+				<span for="password" class="">密&emsp;码:</span>
+      				<input type="password" name="password" class="register-input"  placeholder="密码">
+			</div>
+			<div class="padding10">
+				<button type="button" id="submit" class="btn btn-primary btn-block">提&emsp;交 </button>
+				<a href="{:U('Member/register')}" class="floatR margin-top-10">去注册？</a>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" >
+ 	$(document).ready(function(){
+ 		$("#submit").click(function(){
+ 			var content = $('#form').serialize();
+ 			$.ajax({
+				url:"{:U('Public/login',array('from'=>$_GET['from']))}", 	
+				dataType:'JSON',
+				data:content,
+				type:'POST',
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+						window.location= data.url;
+					}else{
+						alert(data.message);
+					}				
+				}	
+ 			})
+ 		})
+	 })
+</script>
+<include file="Public:boot"/>

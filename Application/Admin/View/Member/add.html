@@ -1,0 +1,70 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">会员注册</h4>
+		<div class="title-button floatR">
+			<a href="javascript:void(0)" class="btn btn-danger"  onClick="submit('#memberForm')">
+				<i class="glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Member/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、后台注册的会员，为顶级会员</p>
+		</div>
+		<form action="{:U('Member/add')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="memberForm">
+			<input type="hidden" name="id" value="{$member['id']}">
+			<div class="border-dashed">
+				<div class="form-group">
+				    	<label for="login_name" class="col-sm-2 control-label">用户名：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="login_name" name="login_name" value="{$member['login_name']}" placeholder="login_name">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="password" class="col-sm-2 control-label">密&emsp;码：</label>
+				    	<div class="col-sm-4">
+				      		<input type="password" class="form-control" id="password" name="password" value="{$member['password']}" placeholder="password">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="real_name" class="col-sm-2 control-label">姓&emsp;名：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="real_name" name="real_name" value="{$member['real_name']}" placeholder="real_name">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="mobile" class="col-sm-2 control-label">手机号：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="mobile" name="mobile" value="{$member['mobile']}" placeholder="mobile">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="email" class="col-sm-2 control-label">邮箱号：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="email" name="email" value="{$member['email']}" placeholder="email">
+				    	</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>

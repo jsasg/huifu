@@ -1,0 +1,48 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="register-box bg-white">
+		<p class="margin-top-10">
+			<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+			<span class="font16">产品申购</span>
+		</p>
+		<form action="" method="post" id="form">
+			<input type="hidden" name="finance_id" value="{$_GET['product_id']}">
+			<div class="padding10">
+				<span for="real_name" class="">姓&emsp;名:</span>
+      				<input type="text" name="real_name" id="real_name" class="register-input" placeholder="姓名">
+			</div>
+			<div class="padding10">
+				<span for="mobile" class="">手机号:</span>
+      				<input type="text" name="mobile" id="mobile"  maxlength="11"  class="register-input"  placeholder="手机号">
+			</div>
+			<div class="padding10">
+				<button type="button" id="submit" class="btn btn-primary btn-block">提&emsp;交 </button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" >
+ 	$(document).ready(function(){
+ 		$("#submit").click(function(){
+ 			var content = $('#form').serialize();
+ 			$.ajax({
+				url:"{:U('Product/buy')}", 	
+				dataType:'JSON',
+				data:content,
+				type:'POST',
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+						window.location="{:U('Product/detail',array('id'=>$_GET['product_id']))}";
+					}else{
+						alert(data.message);
+					}				
+				}	
+ 			})
+ 		})
+	 })
+</script>
+<include file="Public:boot"/>

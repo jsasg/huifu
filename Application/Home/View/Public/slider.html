@@ -1,0 +1,20 @@
+<div class="flexslider">
+	<ul class="slides">
+		<volist name="advert" id="ad">
+            		<li style="display:none;">
+                			<a href="{$ad['advert_url']}">
+                				<img src="__UPIMG__/{$ad['advert_picture']}" alt=""/>
+                			</a>
+          		</li>
+          	</volist>
+	</ul>
+</div>
+<script type="text/javascript">
+    	$(document).ready(function(){
+        		$('.flexslider').flexslider({
+           		 animation: "slide",
+            		slideDirection: "horizontal",
+            		slideshowSpeed: 3000
+        		});
+   	 });
+</script>

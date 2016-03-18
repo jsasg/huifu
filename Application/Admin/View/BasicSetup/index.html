@@ -1,0 +1,111 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">公司简介</h4>
+		<div class="title-button floatR">
+			<a href="javascript:void(0)" class="btn btn-danger"  onClick="submit('#memberForm')">
+				<i class="glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+            <p>1、"协议"为前端注册确认时需确认协议</p>
+		</div>
+		<form action="{:U('BasicSetup/index')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="memberForm">
+			<input type="hidden" name="id" value="{$member['id']}">
+			<div class="border-dashed">
+				<div class="form-group">
+                    <label for="login_name" class="col-sm-2 control-label">用户名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="login_name" name="login_name" value="{$user['login_name']}" placeholder="login_name">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">密码：</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="password" name="password" value="" placeholder="password">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="mobile" class="col-sm-2 control-label">电话：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="mobile" name="mobile" value="{$user['contact']}" placeholder="mobile">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="province" class="col-sm-2 control-label">省份：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="province" id="province">
+                            <option value="">请选择......</option>
+                            <volist name="adr_province" id="pro">
+                                <option value="{$pro['code']}" <if condition="$pro['code'] eq $user['province']">selected="selected"</if>>{$pro['adr_name']}</option>
+                            </volist>
+                        </select>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="city" class="col-sm-2 control-label">城市：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="city" id="city">
+                            <option value="">请选择......</option>
+                            <volist name="adr_city" id="ci">
+                                <option value="{$ci['code']}" <if condition="$ci['code'] eq $user['city']">selected="selected"</if>>{$ci['adr_name']}</option>
+                            </volist>
+                        </select>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="area" class="col-sm-2 control-label">区域：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="area" id="area">
+                            <option value="">请选择......</option>
+                            <volist name="adr_area" id="ar">
+                                <option value="{$ar['code']}" <if condition="$ar['code'] eq $user['area']">selected="selected"</if>>{$ar['adr_name']}</option>
+                            </volist>
+                        </select>
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="address" class="col-sm-2 control-label">地址：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="address" name="address" value="{$user['address']}" placeholder="email">
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="url" class="col-sm-2 control-label">简介：</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" name="content" rows="3">{$user['user_desc']}</textarea>
+                    </div>
+				</div> 
+				<div class="form-group">
+				    	<label for="url" class="col-sm-2 control-label">协议：</label>
+				    	<div class="col-sm-8">
+				    		<js href="__STATIC__/ueditor/ueditor.config.js" />
+							<js href="__STATIC__/ueditor/ueditor.all.min.js" />
+    						<script>
+    							$(function(){
+        								var ue = UE.getEditor('agreement',{
+            								serverUrl :'{:U('Admin/Article/ueditor')}'
+       	 							});
+    							})
+    						</script>
+				      		<script id="agreement" name="agreement" type="text/plain">{$user['agreement']|html_entity_decode}</script>
+				    	</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>

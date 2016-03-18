@@ -1,0 +1,106 @@
+/*公用样式*/
+.padding-left-index{padding:5px 5px 5px 10px;}
+.padding-right-index{padding:5px 10px 5px 5px;}
+.padding10{padding:10px;}
+
+.margin-top-10{margin-top:10px;}
+.margin-bottom-10{margin-bottom:10px;}
+
+.foot-margin{width:100%;height:45px;}
+
+.bg-black{background-color:#444;}
+.bg-gray{background-color:#F2F2F2;}
+.bg-white{background-color:#FFF;}
+.bg-red{background-color:#FF3333}
+.content-box{width:100%;height:auto;padding-bottom:60px;float:left;}
+
+.list-tab{list-style:none;padding-left:10px;}
+.list-tab .list-tab-item{width:100%;height:auto;border-bottom:1px solid #EEE;padding:10px 10px 10px 0}
+.list-tab .list-tab-item a{color:#444;display: block;text-decoration: none;}
+.list-tab .list-tab-item .list-tab-icon{width:32px;height:32px;border-radius:100%;}
+
+.word-break{word-wrap:break-word;word-break:break-all}
+
+.floatL{float:left}
+.floatR{float:right}
+
+.color-gray-4{color:#444}
+.color-gray-6{color:#666}
+.color-gray-8{color:#888}
+.color-red{color:#FF3333 }
+.color-darkyellow{color:#CC9966}
+
+.font12{font-size:12px;}
+.font13{font-size:13px;}
+.font16{font-size:16px;}
+.font20{font-size:20px;}
+
+.border-t{border-width:1px 0 0 0;}
+.border-b{border-width:0 0 1px 0;}
+.border-r{border-width:0 1px 0 0;}
+.border-l-r{border-width:0 1px 0 1px;}
+.border-r-b{border-width:0 1px 1px 0;}
+.border-all{border-width:1px;}
+
+.border-b,.border-r,.border-t,.border-l-r{border-color:#DDD;}
+.border-all{border-color:#CC9966}
+
+.border-b,.border-r,.border-all,.border-t,.border-l-r{border-style:solid;}
+
+.display-none{display:none;}
+
+/*head样式*/
+.mui-slider,.mui-slider-group,.mui-slider-item{width:100%;height:180px;overflow:hidden;}
+.mui-slider-item img{width:100%;}
+
+/*boot样式*/
+.nav-bar{width:100%;height:50px;}
+.nav-bar-tab{background:#FFF;border-top:1px solid #F2F2F2;position:fixed;bottom:0}
+.nav-bar .nav-tab-item{display:block;width:25%;height:50px;float:left;text-align:center;color:#666;text-decoration:none;}
+.nav-bar .nav-tab-item .nav-icon{font-size:20px;display:block;margin-top:5px;}
+.nav-bar .nav-tab-item .nav-tab-label{font-size: 13px;}
+
+/*首页样式*/
+.index-list-box{width:50%;height:auto;float:left;}
+.index-list-box .index-list-item{width:100%;height:100px;background:#FFF;border-radius:3px;text-align:center;display:block;padding-top:20px;text-decoration: none}
+.index-list-box .index-list-item .index-list-icon{display:block;margin:0 auto;width:32px;height:32px;border-radius:100%;}
+.index-list-box .index-list-item .index-list-tag{color:#666;font-size:16px;}
+
+/*产品列表样式*/
+.product-box{width:100%;height:23px;;}
+.product-tag-box{width:100%;height:20px;}
+.product-list-item{width:33.3%;height:auto;float:left;}
+.product-list-item span{display:block}
+.product-box .text-center{padding-top:3px;}
+.product-box .text-right{padding-top:3px;}
+/*产品详情页样式*/
+.detail-tab-item{width:100%;height:auto;background-color:#FFF;float:left;margin-bottom:10px;}
+.detail-tab-title{width:100%;height:35px;line-height:35px;padding:0 10px;}
+.detail-tab-text{width:100%;height:auto;padding:10px;}
+.detail-tab-content{padding:20px 10px;}
+.detail-tab-nav{width:50%;padding:10px;float:left}
+.detail-tab-nav .pull-right{padding-top:2px;}
+.detail-button{display:block;width:100%;height:55px;background-color:#FF3333;position:fixed;bottom:0;color:#FFF;line-height:55px;text-align: center;font-weight: bold;font-size:16px;text-decoration:none;}
+.detail-button:hover{color:#FFF;text-decoration:none;}
+
+.nav-tab{width:100%;height:25px;line-height:25px;margin:0 0 10px 0;border-radius:3px;border:1px solid #DDD;overflow:hidden;}
+.nav-tab .nav-tab-item{width:33.33%;text-align:center;display:block;float:left;text-decoration:none;color:#666}
+.nav-tab .action{background-color:#F2F2F2;color:#CC9966}
+
+/*文章列表样式*/
+.artical-list-title,.artical-list-custom{float:left}
+.artical-list-title{width:70%}
+.artical-list-custom{width:30%;height:45px;}
+.artical-list-custom .artical-custom{height:45px;}
+.content-box div.text,.content-box div.text img{width:100%;}
+
+/*活动页面样式*/
+.activity-list{list-style: none;width:100%;padding:0}
+.activity-box{width:100%;float:left;border:1px dashed red;border-radius:3px;padding-left:10px;}
+.activity-padding,.invite-padding{width:100%;padding:0 10px 10px 10px;}
+
+/*注册页样式*/
+.register-box,.agreement-box,.raise-content{width:100%;border:1px solid #DDD}
+.register-box{height:300px;}
+.register-input{width:100%;height: 35px;border:1px solid #CCC;border-radius:3px;}
+.registre-padding5{padding:5px 10px 5px 10px;}

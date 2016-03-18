@@ -1,0 +1,103 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">栏目列表</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Column/add')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加栏目
+			</a>
+			<a href="#" class="btn btn-danger" onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、每个账号一级菜单最多1-3个,二级菜单最多2-5个,最多支持两层</p>
+		</div>
+		<form action="{:U('Advert/delete')}" method="get" id="deleterForm">
+		<div class="border-solid" style="padding:0">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>栏目名称</th>
+						<th>排序</th>
+						<th>是否开启</th>
+						<th>是否做为底部导航</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['column_name']}</td>
+							<td>{$vo['column_sort']}</td>
+							<td>
+								<if condition="$vo['is_open'] eq 1">
+									是
+								<else/>
+									否
+								</if>
+							</td>
+							<td>
+								<if condition="$vo['is_footer'] eq 1">
+									是
+								<else/>
+									否
+								</if>
+							</td>
+							<td>
+								<a href="{:U('Column/add',array('id'=>$vo['id']))}">
+									编辑
+								</a>|
+								<a href="{:U('Column/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+						<volist name="vo['subNode']" id="sub">
+							<tr>
+								<td></td>
+								<td></td>
+								<td>&emsp;&emsp;|—{$sub['column_name']}</td>
+								<td>{$sub['column_sort']}</td>
+								<td>
+									<if condition="$sub['is_open'] eq 1">
+										是
+									<else/>
+										否
+									</if>
+								</td>
+								<td>
+									<if condition="$sub['is_footer'] eq 1">
+										是
+									<else/>
+										否
+									</if>
+								</td>
+								<td>
+									<a href="{:U('Column/add',array('id'=>$sub['id']))}">
+										编辑
+									</a>|
+									<a href="{:U('Column/delete',array('id'=>$sub['id']))}">
+										删除
+									</a>
+								</td>
+							</tr>
+						</volist>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

@@ -1,0 +1,114 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">募集活动添加</h4>
+		<div class="title-button floatR">
+			<a href="javascript:void(0)" class="btn btn-danger"  onClick="submit('#raiseForm')">
+				<i class="glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Raise/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、募集次数表示，需要多少次点击才能满上限</p>
+		</div>
+		<form action="{:U('Raise/add')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="raiseForm">
+			<input type="hidden" name="id" value="{$raise['id']}">
+			<div class="border-dashed">
+				<div class="form-group">
+				    	<label for="raise_top" class="col-sm-2 control-label">募集上限：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="raise_top" name="raise_top" value="{$raise['raise_top']}" placeholder="募集上限">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="raise_count" class="col-sm-2 control-label">募集次数：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="raise_count" name="raise_count" value="{$raise['raise_count']}" placeholder="募集次数">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="start_time" class="col-sm-2 control-label">开始时间：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="start_time" name="start_time" value="{$raise['start_time']|default=''}" placeholder="活动开始时间">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="end_time" class="col-sm-2 control-label">结束时间：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="end_time" name="end_time" value="{$raise['end_time']|default=''}" placeholder="活动结束时间">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="raise_picture" class="col-sm-2 control-label">缩略图：</label>
+				    	<div class="col-sm-4">
+				      		<if condition="$raise['raise_picture'] eq false">
+				      			<input type="file" id="raise_picture" name="raise_picture" />
+				      		<else/>
+				      			<img src="__UPIMG__/{$raise['raise_picture']}"  class="height100" alt="">
+				      			<a href="{:U('Raise/delPicture',array('raise_id'=>$raise['id']))}" >删除图片</a>
+				      		</if>
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="is_open" class="col-sm-2 control-label">是否开启：</label>
+				    	<div class="col-sm-4">
+				      		<label class="radio-inline">
+						  	<input type="radio" name="is_open" id="is_open" value="1" <if condition="$raise['is_open'] eq 1">checked="checked"</if>> 是
+						</label>
+						<label class="radio-inline">
+						  	<input type="radio" name="is_open" id="is_open" value="0" <if condition="$raise['is_open'] eq 0">checked="checked"</if>> 否
+						</label>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="url" class="col-sm-2 control-label">活动说明：</label>
+				    	<div class="col-sm-8">
+						<js href="__STATIC__/ueditor/ueditor.config.js" />
+						<js href="__STATIC__/ueditor/ueditor.all.min.js" />
+    						<script>
+    							$(function(){
+        								var ue = UE.getEditor('container',{
+            								serverUrl :'{:U('Admin/Article/ueditor')}'
+       	 							});
+    							})
+    						</script>
+				      		<script id="container" name="content" type="text/plain">{$raise['content']|html_entity_decode}</script>
+				    	</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+   		 $("#sign_up_end,#start_time,#end_time").datetimepicker({
+       			 format: "yyyy-mm-dd",
+       			 autoclose: true,
+        			 pickerPosition: "bottom-left",
+        			 maxView: "year",
+        			 minView: "month",
+        			 language: "zh",
+   		 });
+	</script>     
+</block>

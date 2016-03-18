@@ -1,0 +1,129 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">编辑节点</h4>
+		<div class="title-button floatR">
+			<a href="javascript:void(0)" class="btn btn-danger" onClick="submit('#insertForm')">
+				<i class=" glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Node/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+    <div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+            <p>1、"上级节点"不能为本身或下级角色</p>
+            <p>2、"排序"如果不填默认为100</p>
+		</div>
+		<form action="{:U('Node/insert')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="insertForm">
+			<input type="hidden" name="node_id" value="{$node['id']}">
+			<div class="border-dashed">
+                <div class="form-group">
+                    <label for="parent" class="col-sm-2 control-label">上级节点：</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" name="parent_id" id="parent">
+                            <option value="0" class="padding-left-10">顶级节点......</option>
+                            <volist name="parent" id="pid">
+                                <option value="{$pid['id']}" class="padding-left-10" <if condition="$pid['id'] eq $node['parent_id']">selected="selected"</if>>{$pid['title']}</option>
+                                <volist name="pid[sub]" id="su">
+                                    <option value="{$su['id']}" class="padding-left-10" <if condition="$su['id'] eq $node['parent_id']">selected="selected"</if>>&emsp;|-{$su['title']}</option>
+                                    <volist name="su[sub]" id="ssu">
+                                        <option value="{$ssu['id']}" class="padding-left-10" <if condition="$ssu['id'] eq $node['parent_id']">selected="selected"</if>>&emsp;&emsp;|-{$ssu['title']}</option>
+                                    </volist>
+                                </volist>
+                            </volist>
+                        </select>
+                    </div>
+				</div>
+				<div class="form-group">
+                    <label for="title" class="col-sm-2 control-label">节点名称：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="title" name="title" value="{$node['title']}" placeholder="请输入节点名称">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="module" class="col-sm-2 control-label">模块名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="module" name="module" value="{$node['module']}" placeholder="请输入模块名称">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="controller" class="col-sm-2 control-label">控制器：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="controller" name="controller" value="{$node['controller']}" placeholder="请输入控制器名称">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="action" class="col-sm-2 control-label">方法名：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="action" name="action" value="{$node['action']}" placeholder="请输入方法名称">
+                    </div>
+                    <div class="floatL height34 padding-top-10">
+                        <span class="colorR font24">*</span>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="sort" class="col-sm-2 control-label">排序：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="sort" name="sort" value="{$node['sort']}" placeholder="请为节点排序">
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="display" class="col-sm-2 control-label">是否显示：</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="display" id="display1" value="0" <if condition="$node['display'] eq 0">checked="checked"</if>> 否
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="display" id="display2" value="1" <if condition="$node['display'] eq 1">checked="checked"</if>> 是
+                        </label>
+                    </div>
+				</div>
+                <div class="form-group">
+                    <label for="status" class="col-sm-2 control-label">是否控制：</label>
+                    <div class="col-sm-4">
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="status1" value="0" <if condition="$node['status'] eq 0">checked="checked"</if>> 否
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="status2" value="1" <if condition="$node['status'] eq 1">checked="checked"</if>> 是
+                        </label>
+                    </div>
+				</div>
+			</div>
+		</form>
+	</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        if(!"{$node['controller']}"){
+            $('[name="controller"]').parents('.form-group').hide();
+        }
+        if(!"{$node['action']}"){
+            $('[name="action"]').parents('.form-group').hide();
+        }
+        $('[name="parent_id"]').change(function(){
+            if(0 == $(this).val()){
+                $('[name="controller"]').parents('.form-group').hide();
+                $('[name="action"]').parents('.form-group').hide();
+            }else{
+                $('[name="controller"]').parents('.form-group').show();
+                $('[name="action"]').parents('.form-group').show();
+            }
+        })
+    })
+</script>
+</block>

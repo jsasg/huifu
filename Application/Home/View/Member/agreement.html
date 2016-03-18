@@ -1,0 +1,15 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="agreement-box bg-white">
+		<div class="padding10">
+			{$agreement|html_entity_decode}
+		</div>
+		<div class="padding10">
+			<a href="{:U('Member/register',array('user_id'=>$_GET['user_id'],'mid'=>$_GET['mid'],'agree'=>1))}" class="btn btn-primary btn-block">同&emsp;意</a>
+		</div>
+	</div>
+</div>
+<include file="Public:boot"/>

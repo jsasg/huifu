@@ -1,0 +1,32 @@
+<include file="Public:head"/>
+<div class="content-box">
+	<ul class="list-tab">
+		<li class="list-tab-item">
+			<a href="javascript:void(0)">
+				<img src="__PUBLIC__/Home/icon/1a.png" class="list-tab-icon" alt="" />
+				<span>我的募集资金</span>	
+				<span>&emsp;&emsp;{$money}元</span>		
+			</a>
+		</li>
+		<li class="list-tab-item">
+			<a href="{:U('Member/invite',array('user_id'=>$_GET['user_id'],'mid'=>$_SESSION['mid']))}">
+				<img src="__PUBLIC__/Home/icon/2a.png" class="list-tab-icon" alt="" />
+				<span>我要邀请</span>			
+			</a>
+		</li>
+		<li class="list-tab-item">
+			<a href="{:U('Raise/index',array('user_id'=>$_GET['user_id'],'mid'=>$_SESSION['mid']))}">
+				<img src="__PUBLIC__/Home/icon/3a.png" class="list-tab-icon" alt="" />
+				<span>我要募集</span>			
+			</a>
+		</li>
+		<li class="list-tab-item">
+			<a href="{:U('Member/feedback',array('user_id'=>$_GET['user_id'],'mid'=>$_SESSION['mid']))}">
+				<img src="__PUBLIC__/Home/icon/4a.png" class="list-tab-icon" alt="" />
+				<span>意见返馈</span>			
+			</a>
+		</li>
+	</ul>
+</div>
+<include file="Public:nav"/>
+<include file="Public:boot"/>

@@ -1,0 +1,64 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="raise-content bg-white">
+		<p class="margin-top-10">
+			<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+			<span class="font16">会员注册</span>
+		</p>
+		<form action="" method="post" id="form">
+			<input type="hidden" name="mid" value="{$_GET['mid']}">
+			<input type="hidden" name="user_id" value="{$_GET['user_id']}">
+			<div class="registre-padding5">
+				<span for="login_name" class="">用户名:</span>
+      				<input type="text" name="login_name" id="login_name" class="register-input" placeholder="用户名">
+			</div>
+			<div class="registre-padding5">
+				<span for="password" class="">密&emsp;码:</span>
+      				<input type="password" name="password" id="password" class="register-input"  placeholder="密码">
+			</div>
+			<div class="registre-padding5">
+				<span for="real_name" class="">姓&emsp;名:</span>
+      				<input type="text" name="real_name" id="real_name" class="register-input"  placeholder="姓名">
+			</div>
+			<div class="registre-padding5">
+				<span for="mobile" class="">手机号:</span>
+      				<input type="text" name="mobile" id="mobile" class="register-input"  placeholder="手机号">
+			</div>
+			<div class="registre-padding5">
+				 <input type="checkbox" id="agreement" name="agreement"  value="agree" <if condition="$_GET['agree'] eq 1">checked="checked"</if>>
+				<span>
+					<label for="agreement">同意&nbsp;</label>
+					 <a href="{:U('Member/agreement',array('user_id'=>$_GET['user_id'],'mid'=>$_GET['mid']))}" >《居间人协议》</a>
+				</span>
+			</div>
+			<div class="padding10">
+				<button type="button" id="submit" class="btn btn-primary btn-block">提&emsp;交 </button>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" >
+ 	$(document).ready(function(){
+ 		$("#submit").click(function(){
+ 			var content = $('#form').serialize();
+ 			$.ajax({
+				url:"{:U('Public/register')}", 	
+				dataType:'JSON',
+				data:content,
+				type:'POST',
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+						window.location="{:U('Member/login')}";
+					}else{
+						alert(data.message);
+					}				
+				}	
+ 			})
+ 		})
+	 })
+</script>
+<include file="Public:boot"/>

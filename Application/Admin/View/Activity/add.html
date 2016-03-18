@@ -1,0 +1,121 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">添加活动</h4>
+		<div class="title-button floatR">
+			<a href="#" class="btn btn-danger" onClick="submit('#activityForm')">
+				<i class=" glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Activity/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、请按照1：2的宽高比上传图片</p>
+		</div>
+		<form action="{:U('Activity/add')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="activityForm">
+			<input type="hidden" name="id" value="{$activity['id']}">
+			<div class="border-dashed">
+				<div class="form-group">
+				    	<label for="activity_title" class="col-sm-2 control-label">活动标题：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="activity_title" name="activity_title" value="{$activity['activity_name']}" placeholder="活动标题">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="activity_key" class="col-sm-2 control-label">活动关键词：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="activity_key" name="activity_key" value="{$activity['activity_key']}" placeholder="关键词">
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="sign_up_num" class="col-sm-2 control-label">活动人数：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="sign_up_num" name="sign_up_num" value="{$activity['sign_up_num']}" placeholder="报名人数">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="sign_up_end" class="col-sm-2 control-label">报名截止时间：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="sign_up_end" name="sign_up_end" value="{$activity['sign_up_end']|default=''|date='Y-m-d',###}" placeholder="报名截止时间">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="start_time" class="col-sm-2 control-label">活动开始时间：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="start_time" name="start_time" value="{$activity['start_time']|default=''|date='Y-m-d',###}" placeholder="活动开始时间">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="end_time" class="col-sm-2 control-label">活动结束时间：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="end_time" name="end_time" value="{$activity['end_time']|default=''|date='Y-m-d',###}" placeholder="活动结束时间">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="activity_sort" class="col-sm-2 control-label">排序：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" name="activity_sort" id="activity_sort" value="{$activity['activity_sort']}" placeholder="排序">
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="activity_picture" class="col-sm-2 control-label">缩略图：</label>
+				    	<div class="col-sm-4">
+				      		<if condition="$activity['activity_picture'] eq false">
+							<input type="file" class="" id="activity_picture" name="activity_picture" placeholder="上传图片">
+						<else />
+							<img src="__UPIMG__/{$activity['activity_picture']}" class="height100" alt="">
+							<a href="{:U('Activity/delPicture',array('id'=>$activity['id']))}" >删除</a>
+						</if>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="url" class="col-sm-2 control-label">活动详情：</label>
+				    	<div class="col-sm-8">
+						<js href="__STATIC__/ueditor/ueditor.config.js" />
+						<js href="__STATIC__/ueditor/ueditor.all.min.js" />
+    						<script>
+    							$(function(){
+        								var ue = UE.getEditor('container',{
+            								serverUrl :'{:U('Admin/Article/ueditor')}'
+       	 							});
+    							})
+    						</script>
+				      		<script id="container" name="content" type="text/plain">{$activity['activity_content']|html_entity_decode}</script>
+				    	</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
+   		 $("#sign_up_end,#start_time,#end_time").datetimepicker({
+       			 format: "yyyy-mm-dd",
+       			 autoclose: true,
+        			 pickerPosition: "bottom-left",
+        			 maxView: "year",
+        			 minView: "month",
+        			 language: "zh",
+   		 });
+	</script>            
+</block>

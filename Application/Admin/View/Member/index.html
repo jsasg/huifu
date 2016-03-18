@@ -1,0 +1,77 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">会员列表</h4>
+		<div class="title-button floatR">
+			<a href="{:U('Finance/add')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加会员
+			</a>
+			<a href="#" class="btn btn-danger" onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、会员可以看到，所发展的下一级会员列表</p>
+		</div>
+		<form action="{:U('Advert/delete')}" method="get" id="deleterForm">
+		<div class="border-solid" style="padding:0">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>姓名</th>
+						<th>手机号</th>
+						<th>email</th>
+						<th>账户余额</th>
+						<th>募集到资金</th>
+                        <th>
+                            <span>注册时间</span>
+                            <if condition="($_GET['sort_time'] eq 'up') || ($_GET['sort_time'] eq false)">
+                                <a href="{:U('Member/index',array('sort_time'=>'down'))}">
+                            <else/>
+                                <a href="{:U('Member/index',array('sort_time'=>'up'))}">
+                            </if>
+                                <i class='<if condition="$_GET['sort_time'] eq 'down'">glyphicon glyphicon-arrow-down<else/>glyphicon glyphicon-arrow-up</if> font12'></i>
+                            </a>
+                        </th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['real_name']}</td>
+							<td>{$vo['mobile']}</td>
+							<td>{$vo['email']}</td>
+							<td>{$vo['account']}</td>
+							<td>{$vo['raise']}</td>
+							<td>{$vo['create_time']}</td>
+							<td>
+								<a href="{:U('Member/sub',array('id'=>$vo['id']))}">
+									下一级
+								</a>
+								<a href="{:U('Member/add',array('id'=>$vo['id']))}">
+									编辑
+								</a>
+								<a href="{:U('Member/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+	<div class="page">{$page}</div>
+</block>

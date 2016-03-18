@@ -1,0 +1,29 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">系统配置</h4>
+		<div class="title-button floatR">
+			<a href="#" class="btn btn-danger" onClick="submit('#memberForm')">
+				<i class=" glyphicon glyphicon-ok-sign"></i>
+				保存配置
+			</a>
+			<a href="{:U('Index/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回首页
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+    <div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+            <p>1、"协议"为前端注册确认时需确认协议</p>
+		</div>
+		<form action="{:U('User/insert',array('id'=>$_GET['id']))}" method="post" enctype="multipart/form-data" class="form-horizontal" id="memberForm">
+			<input type="hidden" name="id" value="{$member['id']}">
+			<div class="border-dashed">
+                
+			</div>
+		</form>
+	</div>
+</block>

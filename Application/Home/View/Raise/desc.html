@@ -1,0 +1,37 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F0F0F0;}
+</style>
+<div class="content-box padding10">
+	<div class="register-box bg-white">
+		<p class="margin-top-10">
+			<span class="bg-red tile-tips">&nbsp;&nbsp;</span>
+			<span class="font16">活动详情</span>
+		</p>
+		<div class="padding10">
+      			{$desc|html_entity_decode}
+		</div>
+	</div>
+</div>
+<script type="text/javascript" >
+ 	$(document).ready(function(){
+ 		$("#submit").click(function(){
+ 			var content = $('#form').serialize();
+ 			$.ajax({
+				url:"{:U('Member/feedback')}", 	
+				dataType:'JSON',
+				data:content,
+				type:'POST',
+				success:function(data){
+					if(data.status == 200){
+						alert(data.message);
+						window.location="{:U('Member/index')}";
+					}else{
+						alert(data.message);
+					}				
+				}	
+ 			})
+ 		})
+	 })
+</script>
+<include file="Public:boot"/>

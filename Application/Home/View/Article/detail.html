@@ -1,0 +1,17 @@
+<include file="Public:head"/>
+<style type="text/css">
+body{background-color:#F8F8F8;}
+</style>
+<div class="content-box padding10">
+	<if condition="$article['show_title'] eq 1">
+		<div class="articel-detail-title">
+			<h4>{$article['article_title']}</h4>	
+			<span class="color-gray-6">{$article['article_source']}</span>&emsp;
+			<span class="color-gray-6">{$article['create_time']|strtotime|date="m-d H:i",###}</span>
+		</div>
+	</if>
+	<div class="text">
+		{$article['article_content']|html_entity_decode}
+	</div>
+</div>
+<include file="Public:boot"/>

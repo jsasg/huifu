@@ -1,0 +1,87 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">自定义菜单</h4>
+		<div class="title-button floatR">
+			<a href="{:U('CustomMenu/setCustomMenuToWechat')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-phone"></i>
+				同步到微信
+			</a>
+			<a href="{:U('CustomMenu/addCustomMenu')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加菜单
+			</a>
+			<a href="#" class="btn btn-danger"  onClick="submit('#deleterForm')">
+				<i class="glyphicon glyphicon-trash"></i>
+				删除选中
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、自定义菜单需要申请公众平台服务号并绑定申请到的appid和secret.服务号可申请此接口权限</p>
+		  	<p>2、每个账号一级菜单最多1-3个,二级菜单最多2-5个,最多支持两层</p>
+		  	<p>3、自定义菜单每天最多可以同步到微信200次 </p>
+		</div>
+		<form action="{:U('Advert/delete')}" method="get" id="deleterForm">
+		<div class="border-solid" style="padding:0">
+			<table class="table margin-bottom-0">
+				<thead>
+					<tr class="active">
+						<th><input type="checkbox" name="id_all"></th>
+						<th>编号</th>
+						<th>菜单名称</th>
+						<th>菜单类型</th>
+						<th>排序</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<volist name="list" id="vo">
+						<tr>
+							<td><input type="checkbox" name="id[]" value="{$vo['id']}"></td>
+							<td>{$vo['id']}</td>
+							<td>{$vo['menu_name']}</td>
+							<td>{$vo['click_type']}</td>
+							<td>{$vo['menu_sort']}</td>
+							<td>
+								<a href="{:U('CustomMenu/addCustomMenu',array('id'=>$vo['id']))}">
+									编辑
+								</a>
+								<a href="{:U('CustomMenu/addMenuDesc',array('id'=>$vo['id']))}">
+									编辑内容
+								</a>
+								<a href="{:U('CustomMenu/delete',array('id'=>$vo['id']))}">
+									删除
+								</a>
+							</td>
+						</tr>
+						<volist name="vo['subNode']" id="sub">
+							<tr>
+								<td></td>
+								<td></td>
+								<td>&emsp;&emsp;&emsp;|—{$sub['menu_name']}</td>
+								<td>{$sub['click_type']}</td>
+								<td>{$sub['menu_sort']}</td>
+								<td>
+									<a href="{:U('CustomMenu/addCustomMenu',array('id'=>$sub['id']))}">
+										编辑
+									</a>
+									<a href="{:U('CustomMenu/addMenuDesc',array('id'=>$sub['id']))}">
+										编辑内容
+									</a>
+									<a href="{:U('CustomMenu/delete',array('id'=>$sub['id']))}">
+										删除
+									</a>
+								</td>
+							</tr>
+						</volist>
+					</volist>
+				</tbody>
+			</table>
+		</div>
+		</form>
+	</div>
+</block>

@@ -1,0 +1,71 @@
+<extend name="Public:base"/>
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">编辑权限</h4>
+		<div class="title-button floatR">
+			<a href="#" class="btn btn-danger" onClick="submit('#insertForm')">
+				<i class=" glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Role/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+    <div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+            <p>1、打“&radic;”表示赋予权限</p>
+		</div>
+		<form action="{:U('Role/auth')}" method="post" enctype="multipart/form-data" class="form-inline" id="insertForm">
+			<input type="hidden" name="role_id" value="{$_GET['id']}">
+			<div class="border-dashed">
+                <volist name="list" id="vo">
+                    <div class="checkbox-wrap">
+                        <div class="checkbox-item first">
+                            <label class="checkbox-inline">
+                                
+                                <input type="checkbox" name="node[]" class="parent" value="{$vo['id']}" <if condition="in_array($vo['id'],$role_node) neq false">checked="checked"</if>> <span class="fontB">{$vo['title']}</span>
+                            </label>
+                        </div>
+                        <div class="checkbox-item last">
+                            <if condition="judgmentArrayDimension($vo['sub']) eq 1">
+                                <volist name="vo[sub]" id="su">
+                                    <span class="checkbox-sub-item">
+                                        <label class="checkbox-inline">
+                                            <input type="checkbox" name="node[]" class="sub" value="{$su['id']}" <if condition="in_array($su['id'],$role_node) neq false">checked="checked"</if>> {$su['title']}
+                                        </label>
+                                    </span>
+                                </volist>
+                            <else/>
+                                <volist name="vo[sub]" id="su">
+                                    <div class="checkbox-item sub-first">
+                                        <span class="checkbox-sub-item">
+                                            <label class="checkbox-inline">
+                                                <input type="checkbox" name="node[]" class="sub-parent" value="{$su['id']}" <if condition="in_array($su['id'],$role_node) neq false">checked="checked"</if>> {$su['title']}
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div class="checkbox-item sub-last">
+                                        <if condition="$su[sub] neq false">
+                                            <volist name="su[sub]" id="ssu">
+                                                <span class="checkbox-sub-item">
+                                                    <label class="checkbox-inline">
+                                                        <input type="checkbox" name="node[]" class="sub" value="{$ssu['id']}" <if condition="in_array($ssu['id'],$role_node) neq false">checked="checked"</if>> {$ssu['title']}
+                                                    </label>
+                                                </span>
+                                            </volist>
+                                        </if>
+                                    </div>
+                                </volist>
+                            </if>
+                        </div>
+                    </div>
+                </volist>
+                <div class="clear"></div>
+			</div>
+		</form>
+	</div>
+</block>

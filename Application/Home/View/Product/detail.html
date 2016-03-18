@@ -1,0 +1,90 @@
+<include file="Public:head"/>
+<div class="content-box bg-gray">
+	<div class="detail-tab-item">
+		<!-- <div class="detail-tab-title text-center border-b"></div> -->
+		<div class="detail-tab-content border-b">
+			<span class="color-red font20">{$product['goods_name']} </span><if condition="$product['is_novice'] eq 1"><span class="border-all font12 color-darkyellow" >新手专享</span></if><br>
+			<span class="color-gray-8">{$product['product_properties']}</span>
+		</div>
+		<div class="detail-tab-nav border-r border-r-b">
+			<span class="font13 color-gray-8">投资期限 </span>
+			<span class="font13 pull-right">{$product['invest_timelimit']}</span>
+		</div>
+		<div class="detail-tab-nav border-b">
+			<span class="font13 color-gray-8">申购人数 </span>
+			<span class="font13 pull-right">{$product['count']}人</span>		
+		</div>
+		<div class="detail-tab-nav border-r border-r-b">
+			<span class="font13 color-gray-8">发行规模 </span>
+			<span class="font13 pull-right">{$product['issuing_scale']}</span>
+		</div>
+		<div class="detail-tab-nav border-b">
+			<span class="font13 color-gray-8">运行规模 </span>
+			<span class="font13 pull-right">{$product['operation_scale']}</span>		
+		</div>
+	</div>
+	<div class="detail-tab-item border-t">
+		<div class="detail-tab-nav border-r border-r-b">
+			<span class="font13">产品分级</span><br>
+			<span class="font13 color-gray-8">{$product['product_level']}</span>
+		</div>
+		<div class="detail-tab-nav border-b">
+			<span class="font13">投资标的配比</span><br>
+			<span class="font13 color-gray-8">{$product['matching']}</span>		
+		</div>
+	</div>
+	<div class="detail-tab-item border-t">
+		<div class="detail-tab-nav border-r border-r-b">
+			<span class="font13">发行份额</span><br>
+			<span class="font13 color-gray-8">{$product['tranche']}</span>
+		</div>
+		<div class="detail-tab-nav border-b">
+			<span class="font13">费用</span><br>
+			<span class="font13 color-gray-8">申购费{$product['cost']}%,免赎回费</span>		
+		</div>
+	</div>
+	<div class="detail-tab-item border-t">
+		<div class="detail-tab-nav border-r border-r-b">
+			<span class="font13">申购</span><br>
+			<span class="font13 color-gray-8">{$product['start_time']} {$product['start_week']}</span>
+		</div>
+		<div class="detail-tab-nav border-b">
+			<span class="font13">赎回</span><br>
+			<span class="font13 color-gray-8">{$product['end_time']}  {$product['end_week']}</span>		
+		</div>
+		<if condition="$product['is_return'] eq 1">
+			<div class="detail-tab-title border-b pull-left">
+				<span class="color-gray-8">到期自动赎回</span>
+			</div>
+		</if>
+	</div>
+	<div class="detail-tab-item border-t">
+		<div class="detail-tab-text">
+			<nav class="nav-tab">
+				<a class="nav-tab-item action" href="javascript:void(0)">项目概况</a>
+				<a class="nav-tab-item border-l-r" href="javascript:void(0)">项目描述</a>
+				<a class="nav-tab-item" href="javascript:void(0)">资金保障</a>
+			</nav>
+			<div class="content">
+				{$product['project_overview']|html_entity_decode}		
+			</div>
+			<div class="content display-none">
+				{$product['project_desc']|html_entity_decode}		
+			</div>
+			<div class="content display-none">
+				{$product['funds_safe']|html_entity_decode}		
+			</div>
+		</div>
+	</div>
+	<a href="{:U('Product/buy',array('product_id'=>$product['id']))}" class="detail-button" >立即申购</a>
+</div>
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$('.nav-tab-item').click(function(){
+			var index = $(this).index();
+			$(this).addClass('action').siblings('a.nav-tab-item').removeClass('action');
+			$('.content').eq(index).show().siblings('div.content').hide();
+		})	
+	})
+</script>
+<include file="Public:boot"/>

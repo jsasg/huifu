@@ -1,0 +1,80 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">添加广告</h4>
+		<div class="title-button floatR">
+			<a href="#" class="btn btn-danger" onClick="submit('#advertForm')">
+				<i class=" glyphicon glyphicon-ok-sign"></i>
+				保存
+			</a>
+			<a href="{:U('Advert/index')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-share-alt"></i>
+				返回列表
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content margin-bottom-10">
+		<div class="warning warning-tips" role="alert">
+		  	<p>1、请按照4：3的宽高比上传图片</p>
+		</div>
+		<form action="{:U('Advert/add')}" method="post" enctype="multipart/form-data" class="form-horizontal" id="advertForm">
+			<input type="hidden" name="id" value="{$advert['id']}">
+			<div class="border-dashed">
+				<div class="form-group">
+				    	<label for="advert_name" class="col-sm-2 control-label">广告名称：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="advert_name" name="advert_name" value="{$advert['advert_name']}" placeholder="栏目名称">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="advert_desc" class="col-sm-2 control-label">广告描述：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" id="advert_desc" name="advert_desc" value="{$advert['advert_desc']}" placeholder="广告描述">
+				    	</div>
+				    	<div class="floatL height34 padding-top-10">
+				    		<span class="colorR font24">*</span>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="advert_sort" class="col-sm-2 control-label">排序：</label>
+				    	<div class="col-sm-4">
+				      		<input type="text" class="form-control" name="advert_sort" id="advert_sort" value="{$advert['advert_sort']}" placeholder="排序">
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="advert_picture" class="col-sm-2 control-label">上传图片：</label>
+				    	<div class="col-sm-4">
+				      		<if condition="$advert['advert_picture'] eq false">
+							<input type="file" class="" id="advert_picture" name="advert_picture" placeholder="上传图片">
+						<else />
+							<img src="__UPIMG__/{$advert['advert_picture']}" class="height100" alt="">
+							<a href="{:U('Advert/delPicture',array('id'=>$advert['id']))}" >删除</a>
+						</if>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="is_open" class="col-sm-2 control-label">是否开启：</label>
+				    	<div class="col-sm-4">
+						<label class="radio-inline">
+						  	<input type="radio" name="is_open" id="is_open" value="0" <if condition="$advert['is_open'] heq '0'">checked="checked"</if>> 否
+						</label>
+				      		<label class="radio-inline">
+						  	<input type="radio" name="is_open" id="is_open" value="1" <if condition="$advert['is_open'] eq 1">checked="checked"<elseif condition="$advert['is_open'] heq null"/>checked="checked"</if>> 是
+						</label>
+				    	</div>
+				</div>
+				<div class="form-group">
+				    	<label for="url" class="col-sm-2 control-label">自定义url：</label>
+				    	<div class="col-sm-4">
+				      		<input type="url" class="form-control" name="advert_url" value="{$advert['advert_url']}" id="url" placeholder="自定义url">
+				    	</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</block>

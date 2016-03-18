@@ -1,0 +1,18 @@
+<include file="Public:headSlider"/>
+<include file="Public:slider"/>
+<div class="content-box bg-black">
+	<volist name="list" id="vo">
+		<div class="index-list-box <if condition="$i%2 neq 0">padding-left-index<else/>padding-right-index</if>">
+			<if condition="$vo['column_url'] neq false">
+				<a class="index-list-item" href="{$vo['column_url']}">
+			<else/>
+				<a class="index-list-item" href="{:U('Article/index',array('user_id'=>$_GET['user_id'],'column_id'=>$vo['id']))}">
+			</if>
+				<img src="__UPIMG__/{$vo['column_custom']}" alt=""  class="index-list-icon"/>
+				<span class="index-list-tag">{$vo['column_name']}</span>	
+			</a>
+		</div>
+	</volist>
+</div>
+<include file="Public:nav"/>
+<include file="Public:boot"/>

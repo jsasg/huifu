@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<title>私募内参点击参与</title>
+	<style type="text/css">
+		*{padding:0;margin:0;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
+		.wrapper,#top img.top-picture,#top .wrap .tips-title{width:100%;height:auto;}
+		.wrap{width:100%;padding:0 20px;}
+		.red{color:#FF071A;}
+		.bold{font-weight:bold;}
+		.mar-tb10{margin:10px 0;}
+		#top{width:100%;height:auto;background-color:#FAF7CE;}
+		.wrap .tips-title{padding:3px 0;background-color:#E70012;border-radius:10px;color:#FFF;text-align:center;font-size:13px;}
+		#top .wrap .item-box{list-style-image:url('__PUBLIC__/Home/image/right.png');padding:5px 20px;font-size:12px;}
+		.wrap .append-btn{
+			display:block;width:100%;height:45px;line-height:45px;border-radius:7px;border:2px solid #E73C2A;padding:0 25px;
+			font-size:24px;font-weight:bold;color:#FFF;text-decoration:none;
+			background: -webkit-linear-gradient(#E7392B, #F8D919, #EB6025);
+			background: -o-linear-gradient(#E7392B, #F8D919, #EB6025);
+			background: linear-gradient(#E7392B, #F8D919, #EB6025);
+			animation:myfirst 1s;
+			-moz-animation:myfirst 1s; /* Firefox */
+			-webkit-animation:myfirst 1s; /* Safari and Chrome */
+			-o-animation:myfirst 1s; /* Opera */
+			animation-direction: alternate;
+			-moz-animation-direction: alternate;
+			-webkit-animation-direction: alternate;
+			-o-animation-direction: alternate;
+			animation-iteration-count:infinite;
+			-moz-animation-iteration-count: infinite;
+			-webkit-animation-iteration-count: infinite;
+			-o-animation-iteration-count: infinite;
+			transition:All 0.4s ease-in-out;
+			-webkit-transition:All 0.4s ease-in-out;
+			-moz-transition:All 0.4s ease-in-out;
+			-o-transition:All 0.4s ease-in-out;
+		}
+		@keyframes myfirst
+		{
+			0% {
+				transform:scale(1);
+				-webkit-transform:scale(1);
+				-moz-transform:scale(1);
+				-o-transform:scale(1);
+				-ms-transform:scale(1);
+			}
+			100% {
+				transform:scale(1.05);
+				-webkit-transform:scale(1.05);
+				-moz-transform:scale(1.05);
+				-o-transform:scale(1.05);
+				-ms-transform:scale(1.05);
+			}
+		}
+
+		@-moz-keyframes myfirst /* Firefox */
+		{	
+			0% {
+				transform:scale(1);
+				-webkit-transform:scale(1);
+				-moz-transform:scale(1);
+				-o-transform:scale(1);
+				-ms-transform:scale(1);
+			}
+			100% {
+				transform:scale(1.05);
+				-webkit-transform:scale(1.05);
+				-moz-transform:scale(1.05);
+				-o-transform:scale(1.05);
+				-ms-transform:scale(1.05);
+			}
+		}
+
+		@-webkit-keyframes myfirst /* Safari 和 Chrome */
+		{
+			0% {
+				transform:scale(1);
+				-webkit-transform:scale(1);
+				-moz-transform:scale(1);
+				-o-transform:scale(1);
+				-ms-transform:scale(1);
+			}
+			100% {
+				transform:scale(1.05);
+				-webkit-transform:scale(1.05);
+				-moz-transform:scale(1.05);
+				-o-transform:scale(1.05);
+				-ms-transform:scale(1.05);
+			}
+		}
+		@-o-keyframes myfirst /* Opera */
+		{
+			0% {
+				transform:scale(1);
+				-webkit-transform:scale(1);
+				-moz-transform:scale(1);
+				-o-transform:scale(1);
+				-ms-transform:scale(1);
+			}
+			100% {
+				transform:scale(1.05);
+				-webkit-transform:scale(1.05);
+				-moz-transform:scale(1.05);
+				-o-transform:scale(1.05);
+				-ms-transform:scale(1.05);
+			}
+		}
+		.wrap .append-btn img{width:30px;vertical-align:middle;margin-left:50px;}
+		#top  p.tips-ps{font-size:9px;text-align:center;margin-top:15px;}
+		.loading{width:100%;height:2px;background:url('__PUBLIC__/Home/image/loading.png') no-repeat;background-size:100%;}
+
+		#table{font-size:12px;}
+		#table table{width:100%;border-collapse: collapse;}
+		#table thead{background-color:#ED6D2C;border-collapse:0;}
+		#table thead td{padding:5px 3px;border:0;color:#FFF;}
+		#table tbody td{padding:5px 0;border:0;background-color:#EEE;color:#666;border:2px solid #FFF;}
+		#table tbody td img{width:14px;}
+		#table caption img{width:18px;}
+		#table caption{font-size:15px;text-align:left;}
+		.hot-tips{width:100%;height:60px;background:url("__PUBLIC__/Home/image/hot.png") no-repeat;background-size:100%;}
+		
+		.content{float:left;margin:10px 0;}
+		.content img.person_1{width:80px;}
+		.content img.person_2{height:150px;}
+		.content img.person_3{width:80px;}
+		.content span{line-height:30px;text-indent:2em;padding-left:15px;font-size:14px;}
+
+		.footer{float:left;background:#F4F1DE;height:200px;}
+		.footer .orange-bg{background:#E95412;border-radius:8px 8px 0 0;height:120px;}
+		.footer .orange-bg div:last-child{font-size:12px;color:#FFF;padding:0 20px;}
+		.footer .footer-tips p{font-size:12px;color:#666;}
+		.footer .footer-tips p:first-child{text-align:center;margin-top:10px;}
+	</style>
+	<script src="__COMMON__/js/jquery-1.10.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="wrapper">
+		<div id="top">
+			<img class="top-picture" src="__PUBLIC__/Home/image/group_top.png" alt="">
+			<div class="wrap">
+				<div class="tips-title">进群即可享有</div>
+				<ul class="item-box">
+					<li class="item">高手视频《每日解盘直播》<span class="red">完全免费</span></li>
+					<li class="item">高手账户持仓  <span class="red">免费交流</span></li>
+					<li class="item">个股走势与高手线上  <span class="red">免费交流</span></li>
+					<li class="item">高手不定期<span class="red">推荐股票</span>，准确率达90%以上</li>
+					<li class="item">每个星期都有资深的老师讲解实战技法与风险控制<span class="red">免费交流</span></li>
+				</ul>
+				<a href="http://jq.qq.com/?_wv=1027&k=jYoWaK" class="append-btn">
+					<span>点 我 加 群</span>
+					<img src="__PUBLIC__/Home/image/qq.png" alt="">
+				</a>
+				<p class="tips-ps">
+					<span>------本期布局仅限300人名额，<span class="red">群满为止</span>------</span><br>
+					<span class="bold">如果无法一键加群，请手动加群。群号：</span>
+					<span class="red">118058840，384241519</span>
+				</p>
+			</div>
+		</div>
+		<div class="wrap">
+			<div class="loading mar-tb10"></div>
+			<div class="tips-title mar-tb10">《高手布局》历史战绩回顾</div>
+			<div id="table">
+				<table>
+					<thead>
+						<tr>
+							<td>代码</td>
+							<td>名称</td>
+							<td>启动价格</td>
+							<td>目标价格</td>
+							<td>收益增幅</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>60604</td>
+							<td>市北高新</td>
+							<td>9.80</td>
+							<td>25.00</td>
+							<td>255.00%</td>
+						</tr>
+						<tr>
+							<td>002095</td>
+							<td>生意宝</td>
+							<td>37.80</td>
+							<td>80.00</td>
+							<td>210.00%</td>
+						</tr>
+						<tr>
+							<td>002432</td>
+							<td>九安医疗</td>
+							<td>16.60</td>
+							<td>30.00</td>
+							<td>180.00%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="table" class="mar-tb10">
+				<table>
+					<thead>
+						<tr>
+							<td>代码</td>
+							<td>名称</td>
+							<td>启动价格</td>
+							<td>目标价格</td>
+							<td>目前状态</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>002045</td>
+							<td>国光电器</td>
+							<td>6.30</td>
+							<td>12.00</td>
+							<td>获利了结</td>
+						</tr>
+						<tr>
+							<td>600680</td>
+							<td>上海普天</td>
+							<td>15.00</td>
+							<td>40.00</td>
+							<td>获利了结</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id="table" class="mar-tb10">
+				<table>
+					<caption class="red bold">
+						<img src="__PUBLIC__/Home/image/fire.png" alt="">
+						本期持仓.................................................
+					</caption>
+					<thead>
+						<tr>
+							<td>代码</td>
+							<td>名称</td>
+							<td>目标价格</td>
+							<td>目标状态</td>
+							<td>目标收益</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="4" align="center"><img src="__PUBLIC__/Home/image/hot.png" alt="">群内分享</td>
+							<td>敬请期待</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<a href="http://jq.qq.com/?_wv=1027&k=jYoWaK" class="append-btn">
+				<span>点 我 加 群</span>
+				<img src="__PUBLIC__/Home/image/qq.png" alt="">
+			</a>
+		</div>
+		<div class="wrap">
+			<div class="tips-title mar-tb10">群内高手简介</div>
+			<div class="content">
+				<img src="__PUBLIC__/Home/image/person_1.png" class="person_1" align="left" alt="">
+				<span>湖南知名操盘手，证券分析师，入行初期在证券公司任分析师，2009年进入基金公司任高级操盘手，2010年重仓有色板块一战成名，创造月盈利236%的交易神话。是融合波浪、江恩、道氏等名家思想于一体的实战代表人物，从业15余年，擅长在股票捕捉套利机会，下手快，狠，准，业内人称波段神手。</span>
+			</div>
+			<div class="content">
+				<img src="__PUBLIC__/Home/image/person_2.png" class="person_2" align="right" alt="">
+				<span>高级理财规划师，专注投资组合策略研究长达20余年，现活跃于各大基金公司任投资顾问，高级规划师。经常受邀于各媒体，网站财经频道担任特邀嘉宾，讲解投资组合策略和风险控制。为高级客户构建投资计划是他的看家本领。能以旁观者的心态洞悉市场行情的本质。</span>
+				
+			</div>
+			<div class="content">
+				<img src="__PUBLIC__/Home/image/person_3.png" class="person_3" align="left" alt="">
+				<span>国际宏观经济高级研究员，高级分析师，精通国内外各主流市场大盘研判和分析，资深投资人。独创《祥林共振原理》和《祥林主力资金跟盘实战》《永远不会亏钱绝学》等操盘绝学，并被越来越多的网友学习和掌握。</span>
+			</div>
+		</div>
+	</div>
+	<div class="wrapper gray-bg footer">
+		<div class="wrap">
+			<div class="orange-bg">
+				<div class="tips-title mar-tb10">声明</div>
+				<div>为进行品牌推广，本群为广大投资者提供互动交流平台，并提供市场研判等服务，不收费，不骚扰，随时退。如有任何疑问，可以随时咨询群内助理。</div>
+			</div>
+			<div class="footer-tips">
+				<p>投资有风险，入市需谨慎</p>
+				<p>团队过往战绩不预示其未来点绩表现，不构成团队战绩表现的保证</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

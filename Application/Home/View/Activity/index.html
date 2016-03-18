@@ -1,0 +1,19 @@
+<include file="Public:head"/>
+<div class="content-box">
+	<ul class="list-tab">
+		<volist name="list" id="vo">
+			<li class="list-tab-item pull-left">
+				<a href="{:U('Activity/detail',array('user_id'=>$_GET['user_id'],'activity_id'=>$vo['id']))}" class="">
+					<div class="artical-list-custom">
+						<img src="__UPIMG__/{$vo['activity_picture']}" class="artical-custom" alt="" />
+					</div>
+					<div class="artical-list-title">
+						<p>{$vo['activity_name']}</p>
+					</div>
+				</a>
+			</li>
+		</volist>
+	</ul>
+</div>
+<include file="Public:nav"/>
+<include file="Public:boot"/>

@@ -1,0 +1,82 @@
+<extend name="Public:base" />
+<block name="main-title">
+	<div class="main-title">
+		<h4 class="title-text floatL">分类管理</h4>
+		<div class="title-button floatR">
+			<a href="{:U('ProductClass/insert')}" class="btn btn-danger">
+				<i class="glyphicon glyphicon-plus-sign"></i>
+				添加分类
+			</a>
+		</div>
+	</div>
+</block>
+<block name="main-content">
+	<div class="main-content">
+		<form action="{:U('ProductClass/delete')}" method="get" id="deleterForm">
+		<div class="margin-top-10">
+            <div class="cate-title">
+                &emsp;&emsp;<span class="cate_icon root"></span>
+                <span>顶级分类</span>
+            </div>
+            <volist name="list" id="vo">
+                <div class="cate-item p-node">
+                    <div class="cate-text-4">
+                        <span class='cate_icon <if condition="$vo[sub] eq false">no_sub<else/>sub</if>'></span>
+                        <span>{$vo['class_name']}</span>
+                    </div>
+                    <div class="cate-text-4">
+                        <span>
+                            <if condition="1 eq $_SESSION['user']['id']">
+                                {$vo['user_name']}
+                            <else/>
+                                &emsp;
+                            </if>
+                        </span>
+                    </div>
+                    <div class="cate-text-4">
+                        <span>{$vo['is_open']|returnStatus2}</span>
+                    </div>
+                    <div class="cate-action-4 text-right">
+                        <a href="{:U('ProductClass/insert',array('id'=>$vo['id']))}">
+                            编辑
+                        </a>|
+                        <a href="{:U('ProductClass/delete',array('id'=>$vo['id']))}">
+                            删除
+                        </a>
+                    </div>
+                </div>
+                <volist name="vo[sub]" id="su">
+                    <div class="su display-none">
+                        <div class="cate-item">
+                            <div class="cate-text-4">
+                                &emsp;&emsp;<span class="cate_icon no_sub"></span>
+                                <span>{$su['class_name']}</span>
+                            </div>
+                            <div class="cate-text-4">
+                                <span>
+                                    <if condition="1 eq $_SESSION['user']['id']">
+                                        {$su['user_name']}
+                                    <else/>
+                                        &emsp;
+                                    </if>
+                                </span>
+                            </div>
+                            <div class="cate-text-4">
+                                <span>{$su['is_open']|returnStatus2}</span>
+                            </div>
+                            <div class="cate-action-4 text-right">
+                                <a href="{:U('ProductClass/insert',array('id'=>$su['id']))}">
+                                    编辑
+                                </a>|
+                                <a href="{:U('ProductClass/delete',array('id'=>$su['id']))}">
+                                    删除
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </volist>
+		</div>
+		</form>
+	</div>
+</block>
