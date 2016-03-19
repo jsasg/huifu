@@ -21,7 +21,7 @@
             <volist name="list" id="vo">
                 <div class="cate-item p-node">
                     <div class="cate-text">
-                        <span class='cate_icon <if condition="$vo[sub] eq false">no_sub<else/>sub</if>'></span>
+                        <span class="cate_icon <?php if($vo['sub'] == false) echo 'no_sub'; else echo 'sub';?>"></span>
                         <span>{$vo['title']}</span>
                     </div>
                     <div class="cate-action text-right">
@@ -33,45 +33,48 @@
                         </a>
                     </div>
                 </div>
-                <volist name="vo[sub]" id="su">
-                    <div class="su display-none">
-                        <div class="cate-item">
-                            <div class="cate-text">
-                                &emsp;&emsp;<span class='cate_icon <if condition="$su[sub] eq false">no_sub<else/>sub</if>'></span>
-                                <span>{$su['title']}</span>
-                            </div>
-                            <div class="cate-action text-right">
-                                <a href="{:U('Node/insert',array('id'=>$su['id']))}">
-                                    编辑
-                                </a>|
-                                <a href="{:U('Node/delete',array('id'=>$su['id']))}">
-                                    删除
-                                </a>
-                            </div>
-                        </div>
-                        <volist name="su[sub]" id="ssu">
-                            <div class="ssu display-none">
-                                <div class="cate-item">
-                                    <div class="cate-text">
-                                        &emsp;&emsp;&emsp;&emsp;<span class="cate_icon no_sub"></span>
-                                        <span>{$ssu['title']}</span>
-                                    </div>
-                                    <div class="cate-action text-right">
-                                        <a href="{:U('Node/insert',array('id'=>$ssu['id']))}">
-                                            编辑
-                                        </a>|
-                                        <a href="{:U('Node/delete',array('id'=>$ssu['id']))}">
-                                            删除
-                                        </a>
-                                    </div>
+                <if condition="$vo['sub'] neq ''">
+                    <volist name="vo['sub']" id="su">
+                        <div class="su display-none">
+                            <div class="cate-item">
+                                <div class="cate-text">
+                                    &emsp;&emsp;<span class="cate_icon <?php if($su['sub'] == false) echo 'no_sub'; else echo 'sub';?>"></span>
+                                    <span>{$su['title']}</span>
+                                </div>
+                                <div class="cate-action text-right">
+                                    <a href="{:U('Node/insert',array('id'=>$su['id']))}">
+                                        编辑
+                                    </a>|
+                                    <a href="{:U('Node/delete',array('id'=>$su['id']))}">
+                                        删除
+                                    </a>
                                 </div>
                             </div>
-                        </volist>
-                    </div>
-                </volist>
+                            <if condition="$su['sub'] neq ''">
+                                <volist name="su['sub']" id="ssu">
+                                    <div class="ssu display-none">
+                                        <div class="cate-item">
+                                            <div class="cate-text">
+                                                &emsp;&emsp;&emsp;&emsp;<span class="cate_icon no_sub"></span>
+                                                <span>{$ssu['title']}</span>
+                                            </div>
+                                            <div class="cate-action text-right">
+                                                <a href="{:U('Node/insert',array('id'=>$ssu['id']))}">
+                                                    编辑
+                                                </a>|
+                                                <a href="{:U('Node/delete',array('id'=>$ssu['id']))}">
+                                                    删除
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </volist>
+                            </if>
+                        </div>
+                    </volist>
+                </if>
             </volist>
 		</div>
 		</form>
 	</div>
-	<div class="page">{$page}</div>
 </block>

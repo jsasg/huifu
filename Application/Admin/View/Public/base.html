@@ -62,7 +62,7 @@
                 </li>
                 <ol class="left-menu-sub display-none">
                     <if condition="$me['sub'] neq ''">
-                        <volist name="me['sub']" id="su">
+                        <volist name="me['sub']" id="su" key="k">
                             <li class="menu-sub-item lineHeight-45">
                                 <a href="{$su['url']}" class="colorF display-block">
                                     <i class="glyphicon glyphicon-menu-right font10"></i>
